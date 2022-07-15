@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from configurations import Configuration
 from configurations import values
+import argon2
 
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -139,6 +140,15 @@ class Dev(Configuration):
     #Crispy Forms
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+    PASSWORD_HASHERS = [
+      'django.contrib.auth.hashers.Argon2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+      'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    
+    ]
+
 
 class Prod(Dev):
     DEBUG = False
