@@ -41,6 +41,7 @@ class Dev(Configuration):
     # Application definition
 
     INSTALLED_APPS = [    
+        "debug_toolbar",
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -53,6 +54,7 @@ class Dev(Configuration):
     ]
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -159,7 +161,9 @@ class Dev(Configuration):
             "handlers": ["console"],
             "level": "DEBUG",
         }
+        
     }
+    INTERNAL_IPS = ["192.168.10.93"]
 
 
 class Prod(Dev):
