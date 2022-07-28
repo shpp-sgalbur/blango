@@ -29,6 +29,8 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 
+    AUTH_USER_MODEL = "blango_auth.User"
+
     ALLOWED_HOSTS = ['*']
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
     CSRF_COOKIE_SAMESITE = None
@@ -40,7 +42,8 @@ class Dev(Configuration):
 
     # Application definition
 
-    INSTALLED_APPS = [    
+    INSTALLED_APPS = [   
+        "blango_auth", 
         "debug_toolbar",
         'django.contrib.admin',
         'django.contrib.auth',
