@@ -42,10 +42,29 @@ class Dev(Configuration):
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SAMESITE = 'None'
+    SITE_ID = 1
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'google': {
+            # For each OAuth based provider, either add a ``SocialApp``
+            # (``socialaccount`` app) containing the required client
+            # credentials, or list them here:
+            'APP': {
+                'client_id': '173823709276-cehd3lkkb1vt8c89p1dnof99elofbeni.apps.googleusercontent.com',
+                'secret': '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',
+                'key': ''
+            }
+        }
+    }
 
     # Application definition
 
     INSTALLED_APPS = [   
+        
         "blango_auth", 
         "debug_toolbar",
         'django.contrib.admin',
@@ -53,10 +72,16 @@ class Dev(Configuration):
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
+        'django.contrib.sites',
         'django.contrib.staticfiles',
         'blog', 
+        'blango',
         'crispy_forms',
-        'crispy_bootstrap5' 
+        'crispy_bootstrap5',
+        "allauth",
+        "allauth.account",
+        "allauth.socialaccount",
+        "allauth.socialaccount.providers.google",
     ]
 
     MIDDLEWARE = [
